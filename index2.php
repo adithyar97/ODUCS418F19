@@ -137,6 +137,38 @@ $conn->close();
     border-color: #0067B6;
 
 }
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+  border-right:1px solid #bbb;
+}
+
+li:last-child {
+  border-right: none;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #4CAF50;
+}
 #body {
     margin-top : 10%
   font-family: Arial;
@@ -193,7 +225,7 @@ form.example::after {
 </head>
 
 <body>
-  <nav class="navbar  navbar-default navbar-properties"  style="postion:fixed">
+  <!-- <nav class="navbar  navbar-default navbar-properties"  style="postion:fixed">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#" style="color:#66ccff;">Home Search Portal</a>
@@ -220,13 +252,21 @@ form.example::after {
          <a href="./login3.php" style="color:white; float:right; padding:8px;">Forgot Password</a>
          <!-- <a href="./update1.php" style="color:white; float:right; padding:8px;">Change Password</a> -->
         <!-- <p>Forgot <a href="#">Password?</a></p> -->
-  
-        </form>
+      
+        <!-- </form>
         
       </ul>
-    </div> 
+    </div> -->
     <!-- <img src="backgroundimage_12.jpg" style="width:100%;height:100%;"> -->
-  </nav>
+  <!-- </nav>  -->
+  <ul>
+  <li><a class="active" href="index2.php">Home</a></li>
+  <li><a href="advance.php">Advance Search</a></li>
+  <li><a href="#news">Profile Detais</a></li>
+  <li><a href="update1.php">Change Password</a></li>
+  <li><a href="update_record.php">Add a Home</a></li>
+  <li style="float:right"><a href="logout.php">Logout</a></li>
+</ul>
     <div id="body">
         <!-- <img src="images/backgroundimag_15.jpg" style="width:100%;height:100%;"> -->
         <!-- <img src="backgroundimage_12.jpg" style="width:100%;height:100%;"> -->
@@ -238,8 +278,18 @@ form.example::after {
     
         <!-- <p>Enter your Query Here:</p> -->
 <form class="example"style="margin:auto;max-width:300px" method="post" action ="search_page.php">
-  <input type="text" placeholder="Search by Location.." name="search2">
+  <input type="text" placeholder="Search by Location.." id="search2" oninput = "abc()" name = "search2">
   <button type="submit"><i class="fa fa-search"></i></button><br>
+  <script>
+  function abc(){
+                var safe_query = filterXSS($("#search2").val());
+                $("#search2").val(safe_query).trim();
+                // var xssSearch = filterXSS($('search2').val().trim());
+                // $("#search2").empty();
+                // $("#search2").val(xssSearch);
+
+                }
+  </script>
   <br>
   <br>
   <label class="radio-inline">

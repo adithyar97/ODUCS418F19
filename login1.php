@@ -1,14 +1,6 @@
 <?php
 session_start();
 include('connect_db.php');
-use Elasticsearch\ClientBuilder;
-
-require 'vendor/autoload.php';
-
-$client = ClientBuilder::create()->build();
-// require 'vendor/autoload.php';
-// $client = new ElasticSearch\Client();
-// $client = ElasticSearch\ClientBuilder::create()->build();
 // $_SESSION["uname"] = "adithyar82";
 // print_r($_SESSION);
 // $servername = "localhost";
@@ -21,20 +13,6 @@ $client = ClientBuilder::create()->build();
 // if ($conn->connect_error) {
 //   die("Connection failed: " . $conn->connect_error);
 // }
-// $host =[
-//   '192.168.1.1:9200',
-//   '192.168.1.2',
-//   'mydomain.server.com:9201',
-//   'mydomain2.server.com',
-//   'https://localhost',
-//   'https://192/168.1.3.9200'
-// ];
-// // $client = ClientBuilder::create()
-// //                    ->setHosts($hosts)
-// //                    ->build();
-// $clientBuilder = ClientBuilder::create();
-// $clientBuilder->setHosts($hosts);
-// $client = $clientBuilder->build();
 if(isset($_POST["Submit1"]))
 {
 
@@ -89,7 +67,7 @@ $conn->close();
 ?>
 <!doctype html>
 <html lang="en">
-<script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
+
 <head>
   <title>Home Search Portal</title>
   <meta charset="utf-8">
@@ -205,7 +183,7 @@ form.example::after {
             <label class="form_font_heading" for="username">
               <span class="glyphicon glyphicon-user greyFil_icon"></span> Username
             </label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username"><span class="font_red error" id="span_email"></span>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter email"><span class="font_red error" id="span_email"></span>
          
           
             <label class="form_font_heading" for="password">
@@ -220,11 +198,11 @@ form.example::after {
          <a href="./login3.php" style="color:white; float:right; padding:8px;">Forgot Password</a>
          <!-- <a href="./update1.php" style="color:white; float:right; padding:8px;">Change Password</a> -->
         <!-- <p>Forgot <a href="#">Password?</a></p> -->
-  
+      
         </form>
         
       </ul>
-    </div> 
+    </div>
     <!-- <img src="backgroundimage_12.jpg" style="width:100%;height:100%;"> -->
   </nav>
     <div id="body">
@@ -237,8 +215,8 @@ form.example::after {
         
     
         <!-- <p>Enter your Query Here:</p> -->
-<form class="example"style="margin:auto;max-width:300px" method="post" action ="search_page.php">
-  <input type="text" placeholder="Search by Location.." name="search2">
+<form class="example"style="margin:auto;max-width:300px">
+  <input type="text" placeholder="Search.." name="search2">
   <button type="submit"><i class="fa fa-search"></i></button><br>
   <br>
   <br>

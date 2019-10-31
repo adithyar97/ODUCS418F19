@@ -1,14 +1,6 @@
 <?php
 session_start();
 include('connect_db.php');
-use Elasticsearch\ClientBuilder;
-
-require 'vendor/autoload.php';
-
-$client = ClientBuilder::create()->build();
-// require 'vendor/autoload.php';
-// $client = new ElasticSearch\Client();
-// $client = ElasticSearch\ClientBuilder::create()->build();
 // $_SESSION["uname"] = "adithyar82";
 // print_r($_SESSION);
 // $servername = "localhost";
@@ -21,20 +13,6 @@ $client = ClientBuilder::create()->build();
 // if ($conn->connect_error) {
 //   die("Connection failed: " . $conn->connect_error);
 // }
-// $host =[
-//   '192.168.1.1:9200',
-//   '192.168.1.2',
-//   'mydomain.server.com:9201',
-//   'mydomain2.server.com',
-//   'https://localhost',
-//   'https://192/168.1.3.9200'
-// ];
-// // $client = ClientBuilder::create()
-// //                    ->setHosts($hosts)
-// //                    ->build();
-// $clientBuilder = ClientBuilder::create();
-// $clientBuilder->setHosts($hosts);
-// $client = $clientBuilder->build();
 if(isset($_POST["Submit1"]))
 {
 
@@ -89,7 +67,7 @@ $conn->close();
 ?>
 <!doctype html>
 <html lang="en">
-<script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
+
 <head>
   <title>Home Search Portal</title>
   <meta charset="utf-8">
@@ -178,7 +156,75 @@ form.example::after {
   clear: both;
   display: table;
 }
-
+@keyframes move_wave {
+    0% {
+        transform: translateX(0) translateZ(0) scaleY(1)
+    }
+    50% {
+        transform: translateX(-25%) translateZ(0) scaleY(0.55)
+    }
+    100% {
+        transform: translateX(-50%) translateZ(0) scaleY(1)
+    }
+}
+.waveWrapper {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 10%;
+    margin: auto;
+}
+.waveWrapperInner {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    bottom: -1px;
+    background-image: linear-gradient(to top, #86377b 20%, #27273c 80%);
+}
+.bgTop {
+    z-index: 15;
+    opacity: 0.5;
+}
+.bgMiddle {
+    z-index: 10;
+    opacity: 0.75;
+}
+.bgBottom {
+    z-index: 5;
+}
+.wave {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat no-repeat;
+    background-position: 0 bottom;
+    transform-origin: center bottom;
+}
+.waveTop {
+    background-size: 50% 100px;
+}
+.waveAnimation .waveTop {
+  animation: move-wave 3s;
+   -webkit-animation: move-wave 3s;
+   -webkit-animation-delay: 1s;
+   animation-delay: 1s;
+}
+.waveMiddle {
+    background-size: 50% 120px;
+}
+.waveAnimation .waveMiddle {
+    animation: move_wave 10s linear infinite;
+}
+.waveBottom {
+    background-size: 50% 100px;
+}
+.waveAnimation .waveBottom {
+    animation: move_wave 15s linear infinite;
+}
 /* body{
   /* background-image: url("backgroundimage_12.jpg"); */
   /* background-position: center; /* Center the image */
@@ -193,6 +239,17 @@ form.example::after {
 </head>
 
 <body>
+<div class="waveWrapper waveAnimation">
+  <div class="waveWrapperInner bgTop">
+    <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgMiddle">
+    <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgBottom">
+    <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+  </div>
+</div>
   <nav class="navbar  navbar-default navbar-properties"  style="postion:fixed">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -205,7 +262,7 @@ form.example::after {
             <label class="form_font_heading" for="username">
               <span class="glyphicon glyphicon-user greyFil_icon"></span> Username
             </label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username"><span class="font_red error" id="span_email"></span>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter email"><span class="font_red error" id="span_email"></span>
          
           
             <label class="form_font_heading" for="password">
@@ -216,18 +273,24 @@ form.example::after {
           
            <button id="loginBtn" name = "Submit1"form = "form1" type="submit" class="btn btnshadowTrans" style="background-color:#0088cc;"><span class="glyphicon glyphicon-log-in"></span> Login</button> <br></a>
           
-         <a href="./verify1.php" style="color:white; float:right; padding:8px;">Not a member? Register Here</a>
+         <a href="./connect1.php" style="color:white; float:right; padding:8px;">Not a member? Register Here</a>
          <a href="./login3.php" style="color:white; float:right; padding:8px;">Forgot Password</a>
-         <!-- <a href="./update1.php" style="color:white; float:right; padding:8px;">Change Password</a> -->
         <!-- <p>Forgot <a href="#">Password?</a></p> -->
-  
+      
         </form>
         
       </ul>
-    </div> 
+    </div>
     <!-- <img src="backgroundimage_12.jpg" style="width:100%;height:100%;"> -->
   </nav>
-    <div id="body">
+  <div class="waveWrapper waveAnimation">
+  <div class="waveWrapperInner bgTop">
+    <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgMiddle">
+    <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+  </div>
+  <div id="body">
         <!-- <img src="images/backgroundimag_15.jpg" style="width:100%;height:100%;"> -->
         <!-- <img src="backgroundimage_12.jpg" style="width:100%;height:100%;"> -->
         <h2 style="margin-left:45%; margin-left:30%">The Search to Your Dream Home Begins Here</h2>
@@ -237,8 +300,8 @@ form.example::after {
         
     
         <!-- <p>Enter your Query Here:</p> -->
-<form class="example"style="margin:auto;max-width:300px" method="post" action ="search_page.php">
-  <input type="text" placeholder="Search by Location.." name="search2">
+<form class="example"style="margin:auto;max-width:300px">
+  <input type="text" placeholder="Search.." name="search2">
   <button type="submit"><i class="fa fa-search"></i></button><br>
   <br>
   <br>
@@ -274,6 +337,11 @@ form.example::after {
     </footer>
 <!-- </div> -->
 </div>
+  <div class="waveWrapperInner bgBottom">
+    <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+  </div>
+</div>
+    
 
 </body>
 

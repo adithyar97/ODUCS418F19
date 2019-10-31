@@ -327,9 +327,10 @@ li a:hover:not(.active) {
 </style>
 <body>
 <ul>
-  <li><a href="index.php">Home</a></li>
+  <li><a href="index2.php">Home</a></li>
   
   <li><a class="active" href="update1.php">Change Password</a></li>
+  <li><a href="update_record.php">Add a Home</a></li>
   <li style="float:right"><a href="logout.php">Logout</a></li>
 </ul>
 <form style="border:1px solid #ccc" method = "post">
@@ -343,7 +344,7 @@ li a:hover:not(.active) {
     <input type="text" placeholder="Enter Username" name="username" required> -->
     
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder = "Password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+    <input type="password" placeholder = "Password" sid="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
     
     <label for="psw-repeat"><b>Repeat Password</b></label>
     <input type="password" placeholder="Repeat Password" name="psw-repeat" required>

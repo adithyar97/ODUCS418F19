@@ -75,32 +75,69 @@ input[type=submit]:hover {
 <body>
 <ul>
   <li><a class="active" href="logout.php">Home</a></li>
+  
 </ul>
 <h3>Please fill the following details to serve you better</h3>
 
 <div class="container">
-  <form method = "post">
+  <form method = "post" action = "search_page_2.php">
     <label for="username">Username</label>
-    <input type="text" id="username" name="username" placeholder="Username" value = "<?php echo $uname ?>">
+    <!-- <input type="text" id="username" name="username" placeholder="Username" value = "<?php echo $uname ?>">
  	<label for="username">Specific City(If any)</label>
     <input type="text" id="username" name="username" placeholder="Username">
     <label for="username">Specific Locality(If any)</label>
-    <input type="text" id="username" name="username" placeholder="Username">
-    <label for="country">Occupants</label>
-    <select id="country" name="country">
-      <option value="australia">1</option>
-      <option value="canada">2</option>
-      <option value="canada">4</option>
-      <option value="canada">1 BHK</option>
+    <input type="text" id="username" name="username" placeholder="Username"> -->
+    <label for="address">Specific Locality(If any)</label>
+    <select id="address" name="address">
+      <option value="0 GRANDVIEW AVE">0 GRANDVIEW AVE</option>
+      <option value="530 SMITHFIELD ST">530 SMITHFIELD ST</option>
+      <option value="0 WASHINGTON PL">0 WASHINGTON PL</option>
+      <option value="0 CRAWFORD ST">0 CRAWFORD ST</option>
+      <option value="39 VINE ST">39 VINE ST</option>
+      <option value="1610 FORESIDE ST">1610 FORESIDE ST</option>
+    </select>
+    <label for="neighborhood">District</label>
+    <select id="neighborhood" name="neighborhood">
+      <option value="Mount Washington">Mount Washington</option>
+      <option value="Central Business District">Central Business District</option>
+      <option value="Crawford-Roberts">Crawford-Roberts</option>
+      <option value="Bluff">Bluff</option>
       <option value="canada">2 BHK</option>
       <option value="canada">Beach House</option>
     </select>
-    <label for="country">Type of House</label>
-    <select id="house" name="house">
-      <option value="australia">Villa</option>
-      <option value="canada">Independent House</option>
-      <option value="canada">Condo</option>
-      <option value="canada">1 BHK</option>
+    <label for="ward">Ward</label>
+    <select id="ward" name="ward">
+      <option value="1">1</option>
+      <option value="3">3</option>
+      <option value="6">6</option>
+      <option value="19">19</option>
+      <option value="canada">2 BHK</option>
+      <option value="canada">Beach House</option>
+    </select>
+    <label for="council_district">Council District</label>
+    <select id="council_district" name="council_district">
+      <option value="2">2</option>
+      <option value="6">6</option>
+      <option value="Crawford-Roberts">Crawford-Roberts</option>
+      <option value="Bluff">Bluff</option>
+      <option value="canada">2 BHK</option>
+      <option value="canada">Beach House</option>
+    </select>
+    <label for="public_works_division">Public Works Division</label>
+    <select id="public_works_division" name="public_works_division">
+      <option value="6">6</option>
+      <option value="3">3</option>
+      <option value="Crawford-Roberts">Crawford-Roberts</option>
+      <option value="Bluff">Bluff</option>
+      <option value="canada">2 BHK</option>
+      <option value="canada">Beach House</option>
+    </select>
+    <label for="pli_division">PLI Division</label>
+    <select id="pli_division" name="pli_division">
+      <option value="1">1</option>
+      <option value="3">3</option>
+      <option value="Crawford-Roberts">Crawford-Roberts</option>
+      <option value="Bluff">Bluff</option>
       <option value="canada">2 BHK</option>
       <option value="canada">Beach House</option>
     </select>
@@ -108,7 +145,7 @@ input[type=submit]:hover {
     <label for="subject">Other Requirements</label>
     <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
 
-    <input type="submit" value="Search" onclick="alert('Exiting'); window.location.href='index.php';">
+    <input type="submit" value="Search">
   </form>
 </div>
 

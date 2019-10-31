@@ -19,6 +19,7 @@ include('connect_db.php');
 // echo "Favorite color is " . $_SESSION["username"] . ".<br>";
 // echo $uname;
 $uname = $_SESSION["uname"];
+$uname1 = $_SESSION["uname"];
 $_SESSION["uname"] = $uname;
 
 // Create connection
@@ -184,8 +185,9 @@ li a:hover:not(.active) {
     </div>
   </nav> -->
   <ul>
-  <li><a href="index.php">Home</a></li>
+  <li><a href="index2.php">Home</a></li>
   <li><a href="advance.php">Advance Search</a></li>
+  <li><a href="update_record.php">Add a Home</a></li>
   <li><a class="active" href="#news">Profile Detais</a></li>
   <li><a href="update1.php">Change Password</a></li>
   <li style="float:right"><a href="logout.php">Logout</a></li>
