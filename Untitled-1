@@ -1,0 +1,9 @@
+ function abc(){
+                // var safe_query = filterXSS($("#search2").val());
+                // $("#search2").val(safe_query).trim();
+                var xssSearch = filterXSS($('#search2').val().trim());
+                $("#search2").empty();
+                $("#search2").val(xssSearch);
+
+                }
+  </script>

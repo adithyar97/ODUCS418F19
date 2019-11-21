@@ -47,7 +47,7 @@
   width: 80%;
   margin: 5px 10%;
   color: white;
-  background-color: #4CAF50;
+  background-color: #FF6347;
   border: none;
   border-radius: 5px;
 }

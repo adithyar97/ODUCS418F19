@@ -190,6 +190,7 @@ li a:hover:not(.active) {
   <li><a href="update_record.php">Add a Home</a></li>
   <li><a class="active" href="#news">Profile Detais</a></li>
   <li><a href="update1.php">Change Password</a></li>
+  <li><a href="search_results_2.php">Show Search Results</a></li>
   <li style="float:right"><a href="logout.php">Logout</a></li>
 </ul>
 <h1 align = "center"> Welcome Back <?php echo $fname ?></h1>

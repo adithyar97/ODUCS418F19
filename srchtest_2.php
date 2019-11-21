@@ -3,32 +3,11 @@
 session_start();
 $uname = $_SESSION["uname"];
 echo $username;
-$query = $_POST["search2"];
+$query = $_POST['search2'];
 // require_once("connect_db.php");    
 // require_once("./navbar.php");
 require 'vendor/autoload.php';
-// if(isset($_SESSION['id']))
-// {
-//   echo "<script>$('#display').html('Welcome ".$_SESSION['family_name']."');</script>";
-//   echo "<script>$('#logout').attr('hidden',false);</script>";
-// }
-// else
-// {
-//   echo "<script>$('#logout').attr('hidden',true);</script>";
-// }
-// if(isset($_COOKIE['id']))
-// {
-// 	echo "<script>$('#display').html('Welcome ".$_COOKIE['family_name']."');</script>";
-// 	echo "<script>$('#logout').attr('hidden',false);</script>";
-// 	$_SESSION['id']= $_COOKIE['id']; 
-// 	$_SESSION['family_name']= $_COOKIE['family_name']; 
-// 	$_SESSION['email']= $_COOKIE['email']; 
-// 	// setcookie("id", "", time()-3600);
-// 	setcookie("family_name", "", time()-3600);
-// 	setcookie("email", "", time()-3600);
-// 	setcookie("id", "", time()-3600);
-// }
-// ?>
+ ?>
 <html>
     <head>
     
@@ -75,7 +54,7 @@ require 'vendor/autoload.php';
     border-color: #0067B6;
 
 }
-ul {
+/* ul1 {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -83,16 +62,16 @@ ul {
   background-color: #333;
 }
 
-li {
+li1 {
   float: left;
   border-right:1px solid #bbb;
 }
 
-li:last-child {
+li1:last-child {
   border-right: none;
 }
 
-li a {
+li1 a {
   display: block;
   color: white;
   text-align: center;
@@ -100,12 +79,12 @@ li a {
   text-decoration: none;
 }
 
-li a:hover:not(.active) {
+li1 a:hover:not(.active) {
   background-color: #111;
-}
+}  */
 
 .active {
-  background-color: #4CAF50;
+  /* background-color: #4CAF50; */
 }
 #body {
     margin-top : 10%
@@ -115,19 +94,24 @@ li a:hover:not(.active) {
   background-color: yellow;
 }
 .pagination{
-  background-color: yellow;
+  /* background-color: yellow; */
   color: black;
+  margin-left:45%;
 }
 </style>
 <body>
-<ul>
-  <li><a class="active" href="index2.php">Home</a></li>
-  <li><a href="advance.php">Advance Search</a></li>
-  <li><a href="#news">Profile Detais</a></li>
-  <li><a href="update1.php">Change Password</a></li>
-  <li><a href="search_results_2.php">Show Search Results</a></li>
-  <li style="float:right"><a href="logout.php">Logout</a></li>
-</ul>
+<br>
+<br>
+<br>
+<ul1>
+  <li1><a class="active" href="index2.php">Home</a></li11>
+  <li1><a href="advance.php">Advance Search</a></li1>
+  <li1><a href="#news">Profile Detais</a></li1>
+  <li1><a href="update1.php">Change Password</a></li1>
+  <li1><a href="search_results_2.php">Show Search Results</a></li1>
+  <li1 style="float:right"><a href="logout.php">Logout</a></li1>
+</ul1>
+
 
 </div>
 <!-- Main body of text -->
@@ -140,14 +124,12 @@ li a:hover:not(.active) {
 <form class="form-inline active-cyan-3 active-cyan-4" method="POST">
 <i class="fas fa-search" aria-hidden="true"></i>
   <input type="text" class="form-control input-lg col-lg-4 input-search" value="0" id="opt"  name="option_sel" hidden>
-  <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search By Locations" oninput = "onclick()" name = "search2" id="search2" type="submit" value="<?php echo $query?>" spellcheck="on">
+  <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search By Locations" oninput = "onclick()" value ="<?php echo $query?>" name = "search2" id="search2" type="submit">
   &nbsp;<input type="submit" hidden>
   
 </form>
-<!-- <input type="text" name="<?php echo $query?>" class="form-control input-sm" placeholder="TYPE THE TEXT"> -->
 <form class="example"style="margin:auto;max-width:300px" method="post" action ="search_page.php">
-<!-- <input type="text" placeholder="Search by Location.." id="search2" oninput = "onclick()" name = "search2" id="search2" type="submit"> -->
-  <!-- <button type="submit"><i class="fa fa-search"></i></button><br> -->
+
   <script>
   function onclick(){
                 var safe_query = filterXSS($("#search2").val());
@@ -170,15 +152,15 @@ li a:hover:not(.active) {
       });
     };
     $("input[name='search2']").on("blur", mark);
-    // $("input[name='search2']").on("input", mark);
+    $("input[name='search2']").on("input", mark);
     });
     });
-</script>
-<script>
+  </script>
+  <script>
 $(document).ready(function(){
   var options = {
     valueNames: [ 'name', 'category' ],
-    page: 2,
+    page: 10,
     pagination: true}
   
 
@@ -190,16 +172,7 @@ $(document).ready(function(){
     <?php
  use Elasticsearch\ClientBuilder;
  $query = strip_tags($_POST['search2']);
-//  echo $uname;
-//  include('connect_db.php');
-//  $conn = new mysqli($servername, $username, $password,$dbname);
-//  $sql = "Insert into search_results(username,query) Values ('$uname','$query')";
-//  if ($conn->query($sql) === TRUE){
-//    echo "Done";
-//  }
-//  if($_POST['option_sel']=="0")
-//  {
-  // highlight_string("$query");
+
   $hosts = ['http://localhost:9200'];
   $client = ClientBuilder::create()->setHosts($hosts)->build();
   $params = [
@@ -230,46 +203,24 @@ $(document).ready(function(){
   echo "<script>\$(document).ready(function(){
     $('#stat').html('About ".$results_count." results in ".$time_took." seconds');
   })</script>";
- 
-  
-  
-  // echo "<div class='cards' style='margin-bottom:6%;'> <div id='listId'> <ul class='list'>"; 
-  // for ($i=0; $i<$results_count; $i++)
-  // {
-  //    echo'
-       
-  //      <li><div id="'.$results[$i]['_id'].'" class="p-3">
-       
-  //       <div style="display:inline-block;" id="content">
-  //       <p class="snippet"><a href="search_results.php?id='.$results[$i]['_source']['pin'].'"id="address">'.$results[$i]['_source']['address'].' '.$results[$i]['_source']['neighborhood'].'</a></p>
-  //       <br>
-  //         <p class="snippet" id="model_details"> <b><a href="search_results_4.php?id='.$results[$i]['_id'].'"Neighborhood: </b> Save Record</a></p> <br>
-  //     </div>
-  //    </div>
-  //    </li>
-     
-   
-  //  ';
-  // }
   ?>
-  <footer>
-  <div id="listId">
+<div id="listId">
   <ul class="list">
    
-  <?php 
+    <?php 
     for ($i=0; $i<$results_count; $i++)
-  {  echo"<li>";
+  {  echo"<li class=snippet>";
     //  echo $results[$i]['_id'];
-     echo'<a href="search_results.php?id='.$results[$i]['_source']['pin'].'"id="address">'.$results[$i]['_source']['address'].' '.$results[$i]['_source']['neighborhood'].'</a> <br> <a href="search_results_4.php?id='.$results[$i]['_id'].'"Neighborhood: </b> Save Record</a>' ;
+     echo' <a href="search_results.php?id='.$results[$i]['_source']['pin'].'"id="address">'.$results[$i]['_source']['address'].' '.$results[$i]['_source']['neighborhood'].'</a> <br> <a href="search_results_4.php?id='.$results[$i]['_id'].'"Neighborhood: </b> <br>Save Record</a> <br>' ;
      echo"</li>";
   }
 ?>
 
-
+    
   </ul>
   <ul class="pagination"></ul>
 </div>
-</footer>
+
 </body>
 </html>
 

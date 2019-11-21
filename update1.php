@@ -343,8 +343,8 @@ li a:hover:not(.active) {
 </style>
 <body>
 <ul>
-  <li><a href="index.php">Home</a></li>
-  <li><a href="#news">Demographic Form</a></li>
+  <li><a href="index2.php">Home</a></li>
+  <li><a href="advance.php">Advance Search</a></li>
   <li><a href="pmpProfile.php">Profile Detais</a></li>
   <li><a class="active"href="update1.php">Change Password</a></li>
   <li style="float:right"><a href="logout.php">Logout</a></li>

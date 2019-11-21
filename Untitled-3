@@ -1,0 +1,3 @@
+<p class="snippet"><a href="search_results.php?id='.$results[$i]['_source']['pin'].'"id="address">'.$results[$i]['_source']['address'].' '.$results[$i]['_source']['neighborhood'].'</a></p>
+      // <br>
+      //  <p class="snippet" id="model_details"> <b><a href="search_results_4.php?id='.$results[$i]['_id'].'"Neighborhood: </b> Save Record</a></p> <br>

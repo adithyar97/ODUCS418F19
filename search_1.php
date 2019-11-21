@@ -3,7 +3,6 @@
 session_start();
 $uname = $_SESSION["uname"];
 echo $username;
-$query = $_POST["search2"];
 // require_once("connect_db.php");    
 // require_once("./navbar.php");
 require 'vendor/autoload.php';
@@ -46,8 +45,7 @@ require 'vendor/autoload.php';
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/mark.js/8.6.0/jquery.mark.min.js"></script> 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/mark.js/8.6.0/jquery.mark.min.js"></script>   
 </head>
 <style>
 .navbar {
@@ -114,10 +112,6 @@ li a:hover:not(.active) {
 .highlight {
   background-color: yellow;
 }
-.pagination{
-  background-color: yellow;
-  color: black;
-}
 </style>
 <body>
 <ul>
@@ -140,7 +134,7 @@ li a:hover:not(.active) {
 <form class="form-inline active-cyan-3 active-cyan-4" method="POST">
 <i class="fas fa-search" aria-hidden="true"></i>
   <input type="text" class="form-control input-lg col-lg-4 input-search" value="0" id="opt"  name="option_sel" hidden>
-  <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search By Locations" oninput = "onclick()" name = "search2" id="search2" type="submit" value="<?php echo $query?>" spellcheck="on">
+  <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search By Locations" oninput = "onclick()" name = "search2" id="search2" type="submit">
   &nbsp;<input type="submit" hidden>
   
 </form>
@@ -170,20 +164,9 @@ li a:hover:not(.active) {
       });
     };
     $("input[name='search2']").on("blur", mark);
-    // $("input[name='search2']").on("input", mark);
+    
     });
     });
-</script>
-<script>
-$(document).ready(function(){
-  var options = {
-    valueNames: [ 'name', 'category' ],
-    page: 2,
-    pagination: true}
-  
-
-  var listObj = new List('listId', options);
-});
 </script>
 </div>
 </form>
@@ -230,46 +213,97 @@ $(document).ready(function(){
   echo "<script>\$(document).ready(function(){
     $('#stat').html('About ".$results_count." results in ".$time_took." seconds');
   })</script>";
- 
-  
-  
-  // echo "<div class='cards' style='margin-bottom:6%;'> <div id='listId'> <ul class='list'>"; 
-  // for ($i=0; $i<$results_count; $i++)
-  // {
-  //    echo'
+ echo "<div class='cards' style='margin-bottom:6%;'>";
+  for ($i=0; $i<$results_count; $i++)
+  {
+     echo '
        
-  //      <li><div id="'.$results[$i]['_id'].'" class="p-3">
+       <div id="'.$results[$i]['_id'].'" class="p-3">
        
-  //       <div style="display:inline-block;" id="content">
-  //       <p class="snippet"><a href="search_results.php?id='.$results[$i]['_source']['pin'].'"id="address">'.$results[$i]['_source']['address'].' '.$results[$i]['_source']['neighborhood'].'</a></p>
-  //       <br>
-  //         <p class="snippet" id="model_details"> <b><a href="search_results_4.php?id='.$results[$i]['_id'].'"Neighborhood: </b> Save Record</a></p> <br>
-  //     </div>
-  //    </div>
-  //    </li>
+       <div style="display:inline-block;" id="content">
+       <p class="snippet"><a href="search_results.php?id='.$results[$i]['_source']['pin'].'"id="address">'.$results[$i]['_source']['address'].' '.$results[$i]['_source']['neighborhood'].'</a></p>
+      <br>
+       <p class="snippet" id="model_details"> <b><a href="search_results_4.php?id='.$results[$i]['_id'].'"Neighborhood: </b> Save Record</a></p> <br>
+       
+     </div> 
      
-   
-  //  ';
-  // }
-  ?>
-  <footer>
-  <div id="listId">
-  <ul class="list">
-   
-  <?php 
-    for ($i=0; $i<$results_count; $i++)
-  {  echo"<li>";
-    //  echo $results[$i]['_id'];
-     echo'<a href="search_results.php?id='.$results[$i]['_source']['pin'].'"id="address">'.$results[$i]['_source']['address'].' '.$results[$i]['_source']['neighborhood'].'</a> <br> <a href="search_results_4.php?id='.$results[$i]['_id'].'"Neighborhood: </b> Save Record</a>' ;
-     echo"</li>";
+   </div>';
   }
+  
+  echo "</div>";
+//  }
+//     else if($_POST['option_sel']=="1")
+//     {
+//     $screen = $_POST['screen'];
+//     $ram = $_POST['ram'];
+//     $os = $_POST['os'];
+//     $disp = $_POST['disp'];
+//     $rom = $_POST['rom'];
+//     $speaker = $_POST['speaker'];
+//     $jack = $_POST['jack'];
+//     $cores = $_POST['cores'];
+//     $query = $screen." ".$ram." ".$os." ".$disp." ".$rom." ".$speakers." ".$jack." ".$cores;
+//     $hosts = ['http://localhost:9200'];
+//     $client = ClientBuilder::create()->setHosts($hosts)->build();
+//     $params = [
+//         'index' => 'mobile',
+//         'body' => [
+//         'from' => 0,
+//         'size' => 10000,
+//             'query' => [
+//                 'multi_match' => [
+//                 'query' => $query,
+//                 'fields'=> ['display_resolution','RAM','OS','display_type','internal_memory','loud_speaker','audio_jack','CPU']
+//                 ]
+//             ]
+//         ]
+//     ]; 
+//     $response = $client->search($params);
+//     $results_count = sizeof($response['hits']['hits'],0);
+//     if($results_count===0)
+//     {
+//         echo "<script>swal('Search Results', 'No results found. Try with new or modify the query', 'error').then(function(){
+//         window.location.href='index.php';
+//     });</script>";
+//     }
+//     $time_took = ((int)($response['took'])/1000);
+//     $results = $response['hits']['hits'];
+//     echo "<script>\$(document).ready(function(){
+//         $('#stat').html('About ".$results_count." results (".$time_took." seconds)');
+//     })</script>";
+//     echo "<div class='cards' style='margin-bottom:6%;'>";
+//     for ($i=0; $i<$results_count; $i++)
+//     {
+//         echo '
+//         <div id="'.$results[$i]['_id'].'" class="p-3">
+//         <img src="'.$results[$i]['_source']['img_url'].'" alt="Smiley face" width="100" height="100">
+//         <div style="display:inline-block;" id="content">
+//        <h4><a href="#" id="address">'.$results[$i]['_source']['address'].' '.$results[$i]['_source']['model'].'</a></h4>
+//       <br>
+//        <p class="snippet" id="model_details"><b>Announced</b> in: '.$results[$i]['_source']['announced'].'. <b>Current Status: </b> '.$results[$i]['_source']['status'].'</p>
+//      </div>  
+//    </div>';
+//   }
+//   echo "</div>";
+// ​
+//  }
 ?>
-
-
-  </ul>
-  <ul class="pagination"></ul>
 </div>
+
 </footer>
+<!-- <script>
+​function highlight(text) {
+  var inputText = document.getElementById("'.$results[$i]['_id'].'");
+  var innerHTML = inputText.innerHTML;
+  var index = innerHTML.indexOf(text);
+  if (index >= 0) { 
+   innerHTML = innerHTML.substring(0,index) + "<span class='highlight'>" + innerHTML.substring(index,index+text.length) + "</span>" + innerHTML.substring(index + text.length);
+   inputText.innerHTML = innerHTML;
+  }
+}
+
+​</script>
+<button onclick="highlight('<php $query ?>')">Highlight</button> -->
 </body>
 </html>
 

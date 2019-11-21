@@ -39,9 +39,7 @@ require 'vendor/autoload.php';
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
-
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>    
 </head>
 <style>
 .navbar {
@@ -69,7 +67,7 @@ require 'vendor/autoload.php';
     border-color: #0067B6;
 
 }
-/* ul {
+ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -95,7 +93,7 @@ li a {
 }
 
 li a:hover:not(.active) {
-  background-color: #111; */
+  background-color: #111;
 }
 
 .active {
@@ -105,22 +103,8 @@ li a:hover:not(.active) {
     margin-top : 10%
   font-family: Arial;
 }
-.pagination{
-   margin-left:45%;
-}
 </style>
 <body>
-<script>
-$(document).ready(function(){
-  var options = {
-    valueNames: [ 'name', 'category' ],
-    page: 10,
-    pagination: true}
-  
-
-  var listObj = new List('listId', options);
-});
-</script>
 <ul>
   <li><a class="active" href="index2.php">Home</a></li>
   <li><a href="advance.php">Advance Search</a></li>
@@ -145,13 +129,6 @@ $(document).ready(function(){
   <!-- <a href="./advansearch.php"><button type="button" class="btn btn-outline-primary btn-sm" >Advanced Search</button></a> -->
 </form>
 </div>
-<h2> Results are being displayed for the follwing details:</h2>
-<h6> Address: <?php echo $_POST['address']?></h6>
-<h6> Neighborhood: <?php echo $_POST['neighborhood']?></h6>
-<h6> Ward: <?php echo $_POST['ward']?></h6>
-<h6> Council District: <?php echo $_POST['council_district']?></h6>
-<h6> Public Works Division: <?php echo $_POST['public_works_divison']?></h6>
-<h6> Pli Division: <?php echo $_POST['pli_division']?></h6>
     <?php
  use Elasticsearch\ClientBuilder;
 //  $query = strip_tags($_POST['search2']);
@@ -188,31 +165,29 @@ $(document).ready(function(){
   //  });</script>";
        echo "<script> alert('No results found, please try again');
        window.location.href='index2.php' </script>";
-       echo 'Your Search did not match our Results Kindly provide the details to help us serve you better';
-
+      //  echo 'No results found';
   }
-  
   $time_took = ((int)($response['took'])/1000);
   $results = $response['hits']['hits'];
   echo "<script>\$(document).ready(function(){
     $('#stat').html('About ".$results_count." results in ".$time_took." seconds');
   })</script>";
- 
-//  for ($i=0; $i<$results_count; $i++)
-//  {
-//     echo '
-//       <div id="'.$results[$i]['_id'].'" class="p-3">
+ echo "<div class='cards' style='margin-bottom:6%;'>";
+ for ($i=0; $i<$results_count; $i++)
+ {
+    echo '
+      <div id="'.$results[$i]['_id'].'" class="p-3">
    
-//       <div style="display:inline-block;" id="content">
-//       <h4><a href="#" id="address">'.$results[$i]['_source']['address'].' '.$results[$i]['_source']['neighborhood'].'</a></h4>
-//      <br>
-//       <p class="snippet" id="model_details"><b>Located</b> in: '.$results[$i]['_source']['address'].' <b>Neighborhood: </b> '.$results[$i]['_source']['neighborhood'].'</p> <br>
-//       <b>Council District: </b>'.$results[$i]['_source']['council_district'].' <b>Block Lot: </b>'.$results[$i]['_source']['block_lot'].' <b>Ward: </b>'.$results[$i]['_source']['ward'].'
-//       <b>Public Works Division: </b>'.$results[$i]['_source']['public_works_division'].' <b>Ward: </b>'.$results[$i]['_source']['pli_division'].'
-//     </div>  
-//   </div>';
-//  }
-//   echo "</div>";
+      <div style="display:inline-block;" id="content">
+      <h4><a href="#" id="address">'.$results[$i]['_source']['address'].' '.$results[$i]['_source']['neighborhood'].'</a></h4>
+     <br>
+      <p class="snippet" id="model_details"><b>Located</b> in: '.$results[$i]['_source']['address'].' <b>Neighborhood: </b> '.$results[$i]['_source']['neighborhood'].'</p> <br>
+      <b>Council District: </b>'.$results[$i]['_source']['council_district'].' <b>Block Lot: </b>'.$results[$i]['_source']['block_lot'].' <b>Ward: </b>'.$results[$i]['_source']['ward'].'
+      <b>Public Works Division: </b>'.$results[$i]['_source']['public_works_division'].' <b>Ward: </b>'.$results[$i]['_source']['pli_division'].'
+    </div>  
+  </div>';
+ }
+  echo "</div>";
 //  }
 //     else if($_POST['option_sel']=="1")
 //     {
@@ -270,22 +245,7 @@ $(document).ready(function(){
 // ​
 //  }
 ?>
-<div id="listId">
-  <ul class="list">
-   
-    <?php 
-    for ($i=0; $i<$results_count; $i++)
-  {  echo"<li class=snippet>";
-    //  echo $results[$i]['_id'];
-     echo' <a href="search_results.php?id='.$results[$i]['_source']['pin'].'"id="address">'.$results[$i]['_source']['address'].' '.$results[$i]['_source']['neighborhood'].'</a> <br> <a href="search_results_4.php?id='.$results[$i]['_id'].'"Neighborhood: </b> <br>Save Record</a> <br>' ;
-     echo"</li>";
-  }
-?>
-</ul>
-  <ul class="pagination"></ul>
 </div>
-</div>
-
 
 </footer>
 ​

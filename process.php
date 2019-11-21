@@ -132,7 +132,7 @@
                 } else {
                     echo '<script>
                     alert("Your Details have been submitted")
-                    window.location="index.php";
+                    window.location="recaptcha3.php";
                     </script>';
                 }
           

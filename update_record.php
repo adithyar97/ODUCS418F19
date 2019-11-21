@@ -1,3 +1,5 @@
+
+  
 <?php
     use Elasticsearch\ClientBuilder;
     require 'vendor/autoload.php';
@@ -23,7 +25,7 @@
     $pli_division = $_POST['pli_divison'];
     $response = $client->search($params);
     $next_index = $response['hits']['total']['value'];
-    // echo $next_index;
+    echo $next_index;
     $params = [
         'index' => 'real_estate',
         'id' => $next_index,
@@ -35,12 +37,9 @@
                    'pli_division' => $pli_division]
     ];
     $response = $client->index($params);
-
     // print_r($response);
 ?>
-<?php
-$uname1 = $_SESSION["uname"];
-?>
+<!-- -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +47,6 @@ $uname1 = $_SESSION["uname"];
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box;}
-
 input[type=text], select, textarea {
   width: 100%;
   padding: 12px;
@@ -59,7 +57,6 @@ input[type=text], select, textarea {
   margin-bottom: 16px;
   resize: vertical;
 }
-
 input[type=submit] {
   background-color: #4CAF50;
   color: white;
@@ -75,16 +72,13 @@ ul {
   overflow: hidden;
   background-color: #333;
 }
-
 li {
   float: left;
   border-right:1px solid #bbb;
 }
-
 li:last-child {
   border-right: none;
 }
-
 li a {
   display: block;
   color: white;
@@ -92,18 +86,15 @@ li a {
   padding: 14px 16px;
   text-decoration: none;
 }
-
 li a:hover:not(.active) {
   background-color: #111;
 }
-
 .active {
   background-color: #4CAF50;
 }
 input[type=submit]:hover {
   background-color: #45a049;
 }
-
 .container {
   border-radius: 5px;
   background-color: #f2f2f2;
@@ -118,7 +109,7 @@ input[type=submit]:hover {
 <h3>Please fill the following to enter a new record</h3>
 
 <div class="container">
-  <form method = "post" action = "">
+  <form method = "post">
     <label for="username">Username</label>
     <input id="fname" name="fname" type="text" class="form-control" size="100" value="<?php echo $uname1 ?>" required>
  	<label for="username">Enter the Locality of the House</label>
@@ -137,12 +128,10 @@ input[type=submit]:hover {
     <label for="subject">Other Requirements</label>
     <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
 
-    <button type="button" class="cancelbtn" onclick="alert('Your record has been added'); window.location.href='index2.php';">Add a House</button>
+    <button type="submit" class="cancelbtn" onclick="alert('Your record has been added'); window.location.href='index2.php';">Add a House</button>
   </form>
 </div>
 
 </body>
 </html>
-
-
 
