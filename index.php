@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION["uname"] = $username;
 include('connect_db.php');
 use Elasticsearch\ClientBuilder;
 
@@ -54,7 +55,7 @@ if ($result->num_rows == 1) {
 
   echo '<script>
   
-  window.location="pmpProfile.php";
+  window.location="recaptcha3.php";
   
   </script>';
   echo "done";
@@ -99,6 +100,7 @@ $conn->close();
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+  
   <!-- <script src="./jsFiles/pmpLogin.js"></script> -->
   <style>
   .form-control{
@@ -145,6 +147,7 @@ $conn->close();
 * {
   box-sizing: border-box;
 }
+
 
 form.example input[type=text] {
   padding: 10px;
@@ -218,6 +221,7 @@ form.example::after {
           
          <a href="./verify1.php" style="color:white; float:right; padding:8px;">Not a member? Register Here</a>
          <a href="./login3.php" style="color:white; float:right; padding:8px;">Forgot Password</a>
+         
          <!-- <a href="./update1.php" style="color:white; float:right; padding:8px;">Change Password</a> -->
         <!-- <p>Forgot <a href="#">Password?</a></p> -->
   
@@ -237,8 +241,8 @@ form.example::after {
         
     
         <!-- <p>Enter your Query Here:</p> -->
-<form class="example"style="margin:auto;max-width:300px" method="post" action ="search_page.php">
-  <input type="text" placeholder="Search by Location.." name="search2">
+<!-- <form class="example"style="margin:auto;max-width:300px" method="post" action ="srchtest.php"> -->
+  <!-- <input type="text" placeholder="Search by Location.." name="search2" spellcheck="on">
   <button type="submit"><i class="fa fa-search"></i></button><br>
   <br>
   <br>
@@ -250,10 +254,28 @@ form.example::after {
           </label>
           <label class="radio-inline">
             <input type="radio" name="optradio1">Rent
-          </label> 
-</form>
+          </label>  -->
+      <div class="mycontainer">
+       
+       
+
+       <div class="mywebapp"> 
+       
+       <form class="example"style="margin:auto;max-width:300px" method="post" action ="srchtest.php">
+           <div class="input">
+               <input type="text" placeholder="Search by Location.." name="search2" id="textbox" rows="2"></textarea>
+           </div>  
+           <button type="submit"><i class="fa fa-search"></i></button></button>       
+       </form>   
+       <br>
+        <p class="text-align" style="margin-left:55%"><a href="advance.php" style="color:#339af0">Advance Search</a></p>
+       </div>
+   </div>
+   <button style="margin-left:49%; font-size:24px" id="start-btn"><i class="fa fa-microphone"></i></button>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="script.js"></script>
+<!-- </form> -->
     </div>
-    <p class="text-align" style="margin-left:55%"><a href="advance.php" style="color:#339af0">Advanced Search</a></p>
   
   <footer style=" background:#66ccff; position:fixed; margin-bottom: 0px; width:100%; bottom: 0;font-size:1.4vh;">
         <div class="col-sm-12" style="background:#00AAFF;">

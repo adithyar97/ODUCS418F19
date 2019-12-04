@@ -192,11 +192,14 @@ $(document).ready(function(){
        'from' => 0,
        'size' => 10000,
           'query' => [
-              'multi_match' => [
-               'query' => $query,
-               'fields'=> ['address','neighborhood','council_district','pin','_id']
+              // 'multi_match' => [
+              //  'query' => $query,
+              //  'fields'=> ['address','neighborhood','council_district','pin','_id']
+              // 
+              'fuzzy' =>[
+                'address'=>$query
               ]
-          ]
+          ] 
       ]
   ]; 
   $response = $client->search($params);
@@ -209,16 +212,28 @@ $(document).ready(function(){
   }
   $time_took = ((int)($response['took'])/1000);
   $results = $response['hits']['hits'];
-  echo "<h6> Results displayed for the query: $query </h6>"; 
+  echo "<h6> Results displayed for the query: $query </h6>";
+  $haystack = $results[0]['_source']['address'];
+  $needle = $query;
+  if (stripos($haystack, $needle) !== False){ 
+      echo"<br>";
+  }  
   // echo $query;
+  else{
+    echo"<p> Did you mean: ";
+    echo $results[0]['_source']['address'];
+    echo"</p>";
+  } 
   echo "<script>\$(document).ready(function(){
     $('#stat').html('About ".$results_count." results in ".$time_took." seconds');
   })</script>";
   ?>
+
 <div id="listId">
   <ul class="list">
    
     <?php 
+    
     for ($i=0; $i<$results_count; $i++)
   {  echo"<li class=snippet>";
     //  echo $results[$i]['_id'];

@@ -1,6 +1,6 @@
 <?php
 session_start();
-$uname = $_SESSION['uname'];
+$_SESSION["uname"] = $username;
 include('connect_db.php');
 use Elasticsearch\ClientBuilder;
 
@@ -55,7 +55,7 @@ if ($result->num_rows == 1) {
 
   echo '<script>
   
-  window.location="pmpProfile.php";
+  window.location="recaptcha3.php";
   
   </script>';
   echo "done";
@@ -138,38 +138,6 @@ $conn->close();
     border-color: #0067B6;
 
 }
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-li {
-  float: left;
-  border-right:1px solid #bbb;
-}
-
-li:last-child {
-  border-right: none;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover:not(.active) {
-  background-color: #111;
-}
-
-.active {
-  background-color: #4CAF50;
-}
 #body {
     margin-top : 10%
   font-family: Arial;
@@ -226,7 +194,7 @@ form.example::after {
 </head>
 
 <body>
-  <!-- <nav class="navbar  navbar-default navbar-properties"  style="postion:fixed">
+  <nav class="navbar  navbar-default navbar-properties"  style="postion:fixed">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#" style="color:#66ccff;">Home Search Portal</a>
@@ -251,33 +219,16 @@ form.example::after {
           
          <a href="./verify1.php" style="color:white; float:right; padding:8px;">Not a member? Register Here</a>
          <a href="./login3.php" style="color:white; float:right; padding:8px;">Forgot Password</a>
+         
          <!-- <a href="./update1.php" style="color:white; float:right; padding:8px;">Change Password</a> -->
         <!-- <p>Forgot <a href="#">Password?</a></p> -->
-      
-        <!-- </form>
+  
+        </form>
         
       </ul>
-    </div> -->
+    </div> 
     <!-- <img src="backgroundimage_12.jpg" style="width:100%;height:100%;"> -->
-  <!-- </nav>  -->
-  <ul>
-  <li><a class = "active" href="index2.php">Home</a></li>
-  <li><a href="advance.php">Advance Search</a></li>
-  <li><a href="pmpProfile.php">Profile Detais</a></li>
-  <li><a href="update1.php">Change Password</a></li>
-  <li><a href="update_record.php">Add a Home</a></li>
-  <li><a href="search_results_2.php">My Favourites</a></li>
-  <?php
-     if(empty($uname)){
-     echo"<li style='float:right'><a href='logout.php'>Logout</a></li>";
-  }
-  else{
-     echo"<li style='float:right'><a href='logout.php'>Logout</a></li>
-        <li style='float:right'><a href='pmpProfile.php'>Welcome $uname</a></li>";
-          
-  }
-  ?>
-</ul>
+  </nav>
     <div id="body">
         <!-- <img src="images/backgroundimag_15.jpg" style="width:100%;height:100%;"> -->
         <!-- <img src="backgroundimage_12.jpg" style="width:100%;height:100%;"> -->
@@ -289,14 +240,8 @@ form.example::after {
     
         <!-- <p>Enter your Query Here:</p> -->
 <form class="example"style="margin:auto;max-width:300px" method="post" action ="srchtest.php">
-  <input type="text" placeholder="Search by Location.." id="search2" oninput = "onclick()" name = "search2" spellcheck="on">
+  <input type="text" placeholder="Search by Location.." name="search2" spellcheck="on">
   <button type="submit"><i class="fa fa-search"></i></button><br>
-  <script>
-  function onclick(){
-                var safe_query = filterXSS($("#search2").val());
-                $("#search").val(safe_query).trim();
-                }
-  </script>
   <br>
   <br>
   <label class="radio-inline">
@@ -310,7 +255,7 @@ form.example::after {
           </label> 
 </form>
     </div>
-    <p class="text-align" style="margin-left:55%"><a href="advance.php" style="color:#339af0">Advanced Search</a></p>
+    <p class="text-align" style="margin-left:55%"><a href="advance.php" style="color:#339af0">Advance Search</a></p>
   
   <footer style=" background:#66ccff; position:fixed; margin-bottom: 0px; width:100%; bottom: 0;font-size:1.4vh;">
         <div class="col-sm-12" style="background:#00AAFF;">
