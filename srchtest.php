@@ -206,9 +206,12 @@ $(document).ready(function(){
   $results_count = sizeof($response['hits']['hits'],0);
   if($results_count===0)
   {
-    echo "<script> alert('No results found, please try again');
-       window.location.href='index2.php' </script>";
+    // echo "<script> alert('No results found, please try again');
+    //    window.location.href='index2.php' </script>";
       //  echo 'No results found';
+      echo "No Results found for the query $query";
+      echo"<br>";
+      echo"Please try again";
   }
   $time_took = ((int)($response['took'])/1000);
   $results = $response['hits']['hits'];
